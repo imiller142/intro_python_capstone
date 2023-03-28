@@ -35,6 +35,7 @@ class Card:
             self.value = 1
         return self.value
 
+ian = Player('Ian', 1200)
 
 def create_deck():
     global deck
@@ -45,5 +46,9 @@ def check_value(card):
         return 
 
 create_deck()
-for card in deck:
-    print(card.return_value())
+
+def deal():
+    ian.hand.append(deck.pop(random.randint(0, len(deck))))
+    return ian.hand
+
+print(deal())
