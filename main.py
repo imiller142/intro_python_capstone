@@ -12,11 +12,14 @@ class Player:
         self.money = money
         self.hand =  []
 
+class Dealer:
+
+    def __init__(self):
+        self.hand = []
+
 
 #card class
 class Card:
-
-
 
     def __init__(self, suit, value):
         self.suit = suit
@@ -35,20 +38,32 @@ class Card:
             self.value = 1
         return self.value
 
-ian = Player('Ian', 1200)
+dealer = Dealer()
 
 def create_deck():
-    global deck
     deck = [Card(suit, value) for suit in suits for value in values]
+    return deck
 
-def check_value(card):
-    if type(card.title) == int:
-        return 
 
-create_deck()
+player = Player(input("What is your name? "), input("How much money will you be playing with? "))
 
-def deal():
-    ian.hand.append(deck.pop(random.randint(0, len(deck))))
-    return ian.hand
+def play_round():
 
-print(deal())
+    current_deck = create_deck()
+    current_bet = 0
+
+    def get_current_bet():
+        return current_bet + int(input('How much do you want to bet?'))
+
+    def deal():
+        #ian needs to be swapped with current player
+        player.hand.append(current_deck.pop(random.randint(0, len(current_deck))))
+        dealer.hand.append(current_deck.pop(random.randint(0, len(current_deck))))
+        player.hand.append(current_deck.pop(random.randint(0, len(current_deck))))
+        dealer.hand.append(current_deck.pop(random.randint(0, len(current_deck))))
+        
+    deal()
+    print(f'You currently have the {player.hand[0]} and the {player.hand[1]}')
+    print(dealer.hand)    
+
+play_round()
