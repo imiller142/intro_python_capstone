@@ -21,12 +21,19 @@ class Card:
     def __init__(self, suit, value):
         self.suit = suit
         self.title = value
+        self.value = 0
 
     def __repr__(self):
         return f'{self.title} of {self.suit}'
     
     def return_value(self):
-        pass
+        if type(self.title) == int:
+            self.value = self.title
+        elif self.title == 'jack' or self.title == 'queen' or self.title == 'king':
+            self.value = 10
+        elif self.title == 'ace':
+            self.value = 1
+        return self.value
 
 
 def create_deck():
@@ -39,4 +46,4 @@ def check_value(card):
 
 create_deck()
 for card in deck:
-    print(check_value(card))
+    print(card.return_value())
