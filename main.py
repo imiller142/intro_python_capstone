@@ -53,7 +53,10 @@ def play_round():
     current_bet = 0
 
     def get_current_bet():
-        return current_bet + int(input('How much do you want to bet?'))
+        current_bet = int(input('How much do you want to bet this round?'))
+        if player.money - current_bet <= 0:
+            return ''
+
 
     #will deal the cards to the instanced hands.
     def deal():
